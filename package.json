@@ -1,0 +1,13 @@
+{
+  "name": "nb-docs",
+  "description": "NextBridge Docs",
+  "dependencies": {
+    "vitepress": "2.0.0-alpha.16"
+  },
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview",
+    "deploy": "vitepress build && git clone --depth 1 https://github.com/siiway/NextBridge.git && mv NextBridge/db .vitepress/dist/db && rm -r NextBridge"
+  }
+}

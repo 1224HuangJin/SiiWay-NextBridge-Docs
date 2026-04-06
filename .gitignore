@@ -1,0 +1,5 @@
+# Document related
+node_modules/
+.vitepress/dist/
+.vitepress/cache/
+.obsidian/
