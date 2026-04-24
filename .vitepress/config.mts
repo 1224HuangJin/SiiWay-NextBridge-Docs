@@ -126,6 +126,15 @@ export default defineConfig({
         lastUpdated: {
           text: '本页最后更新于',
         },
+        // 汉化了"On this page"
+        outline: {
+          label: '本页目录'
+        },
+        // 汉化了 "Previous page" 与 "Next page"。
+        docFooter: {
+          prev: '上一篇',
+          next: '下一篇'
+        }
       },
     },
   },
@@ -139,8 +148,37 @@ export default defineConfig({
       dark: "https://icons.siiway.org/nextbridge/icon.svg",
       alt: "NextBridge",
     },
+
+    // 搜索功能 https://vitepress.dev/zh/reference/default-theme-search
     search: {
-      provider: "local",
-    },
+      provider: 'local',
+      options: {
+        locales: {
+          zh: { // 此处为翻译的语言
+            translations: {
+              button: {
+                buttonText: '搜索',
+                 buttonAriaLabel: '搜索'
+              },
+              modal: {
+                displayDetails: '显示详细列表',
+                 resetButtonTitle: '重置搜索',
+                 backButtonTitle: '关闭搜索',
+                noResultsText: '没有结果',
+                 footer: {
+                    selectText: '选择',
+                    selectKeyAriaLabel: '输入',
+                    navigateText: '导航',
+                    navigateUpKeyAriaLabel: '上箭头',
+                    navigateDownKeyAriaLabel: '下箭头',
+                    closeText: '关闭',
+                    closeKeyAriaLabel: 'Esc'
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
   },
 })
