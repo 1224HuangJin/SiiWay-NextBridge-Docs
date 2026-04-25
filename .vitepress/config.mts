@@ -154,7 +154,7 @@ export default defineConfig({
       provider: 'local',
       options: {
         locales: {
-          zh: { // 此处为翻译的语言
+          '/zh/': { // 此处为翻译的语言
             translations: {
               button: {
                 buttonText: '搜索',

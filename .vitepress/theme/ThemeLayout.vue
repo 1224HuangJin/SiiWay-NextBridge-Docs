@@ -6,7 +6,14 @@ import { nextTick, provide } from 'vue'
 
 const { isDark } = useData()
 
+type DocumentWithViewTransition = Document & {
+  startViewTransition?: (callback: () => Promise<void> | void) => { ready: Promise<void> }
+}
+
+const isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined'
+
 const enableTransitions = () =>
+  isBrowser &&
   'startViewTransition' in document &&
   window.matchMedia('(prefers-reduced-motion: no-preference)').matches
 
@@ -16,6 +23,7 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
     return
   }
 
+  const { innerWidth, innerHeight } = window
   const clipPath = [
     `circle(0px at ${x}px ${y}px)`,
     `circle(${Math.hypot(
@@ -24,7 +32,7 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
     )}px at ${x}px ${y}px)`
   ]
 
-  await document.startViewTransition(async () => {
+  await (document as DocumentWithViewTransition).startViewTransition!(async () => {
     isDark.value = !isDark.value
     await nextTick()
   }).ready
